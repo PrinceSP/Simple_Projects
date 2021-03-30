@@ -1,5 +1,5 @@
 let form = document.querySelector('form');
-let title = document.querySelector('input');
+let youTitle = document.querySelector('input');
 let notes = document.querySelector('textarea');
 
 form.addEventListener('submit',getNote);
@@ -7,11 +7,10 @@ form.addEventListener('submit',getNote);
 function getNote(e){
   e.preventDefault();
   let results = {
-    t:title.value,
+    t:youTitle.value,
     n:notes.value
   };
   addNote(results.t, results.n)
-  reset(title,notes);
   return results;
 }
 
@@ -30,15 +29,25 @@ function addNote(title,note){
   titleHolder.textContent = title;
   notesHolder.textContent = note;
 
-  resultsNote.appendChild(titleHolder)
-  resultsNote.appendChild(notesHolder)
-  resultsNote.appendChild(detail)
-  resultContainer.append(resultsNote)
-
+  if (title == '' || note == '') {
+    validation(youTitle,notes);
+  } else{
+    resultsNote.appendChild(titleHolder)
+    resultsNote.appendChild(notesHolder)
+    resultsNote.appendChild(detail)
+    resultContainer.append(resultsNote)
+    reset(youTitle,notes);
+  }
 }
 
-function reset(title,notes){
-  title.value = '';
-  notes.value = '';
-  return title,notes;
+function reset(titleBox,noteBox){
+  titleBox.value = '';
+  noteBox.value = '';
+  return titleBox,noteBox;
+}
+
+function validation(titleBox,noteBox){
+  titleBox.required = true;
+  noteBox.required = true;
+  return titleBox,noteBox;
 }
