@@ -38,6 +38,10 @@ function addNote(title,note){
     resultContainer.append(resultsNote)
     reset(youTitle,notes);
   }
+
+  detail.addEventListener('click',()=>{
+    modalBox(note)
+  })
 }
 
 function reset(titleBox,noteBox){
@@ -50,4 +54,26 @@ function validation(titleBox,noteBox){
   titleBox.required = true;
   noteBox.required = true;
   return titleBox,noteBox;
+}
+
+function modalBox(detailsNotes){
+  let container = document.querySelector('#container')
+  let modalBg = document.createElement('div')
+  modalBg.className = 'modalBg'
+
+  modalBg.innerHTML = `
+    <button type="button" class="exit"></button>
+    <div class="detailNotes">
+      <p>${detailsNotes}</p>
+    </div>
+  `;
+  container.append(modalBg);
+  exit(modalBg,container)
+}
+
+function exit(modalBox,box){
+  let exitBtn = document.querySelector('.exit');
+  exitBtn.addEventListener('click',()=>{
+    box.removeChild(modalBox)
+  })
 }

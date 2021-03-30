@@ -13,10 +13,14 @@ body{
 #container{
   height:100%;
   width: 100%;
-  padding: 15px 0 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#container > div:nth-of-type(1),
+#container > div:nth-of-type(2){
+  margin-top: 10px;
 }
 
 .header{
@@ -119,4 +123,50 @@ form button{
 .result_notes{
   color:#777;
   letter-spacing:0.6px;
+}
+
+.modalBg{
+  height:100vh;
+  width:100%;
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exit{
+  background: none;
+  height:30px;
+  width:30px;
+  position:absolute;
+  left:15.5%;
+  top:36%;
+}
+
+.exit::before,
+.exit::after{
+  content: '';
+  width: 25px;
+  height:4px;
+  background: #444;
+  transform: rotate(45deg);
+  left:2px;
+  top:12px;
+  position: absolute;
+  border-radius:10px;
+}
+.modalBg .exit::before{
+  transform:rotate(-45deg);
+}
+
+.detailNotes{
+  min-height:200px;
+  background: #eee;
+  width: 70%;
+  border:none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
 }
